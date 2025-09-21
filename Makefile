@@ -14,7 +14,7 @@ build:
 	cd build && zip -r package.zip .
 
 plan:
-	cd infra && terraform init && terraform plan
+	cd terraform && terraform init && terraform plan
 
 apply:
-	cd infra && terraform apply -auto-approve
+	cd terraform && terraform apply -auto-approve
