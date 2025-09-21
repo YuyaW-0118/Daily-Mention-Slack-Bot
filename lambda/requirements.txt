@@ -1,3 +1,5 @@
-slack_sdk>=3.27.0
+slack_sdk>=3.31.0
 jpholiday>=0.1.11
 boto3>=1.26.0
+pydantic==2.8.2
+pydantic-settings==2.5.2
