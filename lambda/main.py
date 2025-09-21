@@ -94,7 +94,7 @@ def lambda_handler(event, context):
     chosen_user_id = choose_random_user(member_ids)
     chosen_user_id = "U07ACDNLLUD"
 
-    message_text = f"[test] <@{chosen_user_id}>"
+    message_text = f"<@{chosen_user_id}>が、好きな楽曲を発表します。"
     post_message(client, channel_id, message_text)
 
     return {
