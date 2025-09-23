@@ -1,9 +1,23 @@
+import datetime
 import random
 
+from jpholiday import JPHoliday
 from slack_sdk import WebClient
 from slack_sdk.errors import SlackApiError
 
 from credentials import get_settings
+
+
+def is_jp_holiday_today() -> bool:
+    """
+    Checks if today is a Japanese holiday.
+
+    Returns:
+        bool: True if today is a holiday, False otherwise.
+    """
+    jpholiday = JPHoliday()
+    today = datetime.date.today()
+    return jpholiday.is_holiday(today)
 
 
 def get_channel_member_ids(client: WebClient, channel_id: str) -> list[str]:
@@ -72,6 +86,11 @@ def lambda_handler(event, context):
         event: The event data passed to the Lambda function.
         context: The context object provided by AWS Lambda.
     """
+    if is_jp_holiday_today():
+        return {
+            "ok": True,
+            "message": "Today is a Japanese holiday. No action taken.",
+        }
     settings = get_settings()
     client = WebClient(token=settings.slack_bot_token)
 
